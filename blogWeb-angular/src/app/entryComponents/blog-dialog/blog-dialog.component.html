@@ -1,0 +1,17 @@
+<h3 matDialogTitle>Blog Details</h3>
+<form [formGroup]="blogForm">
+  <mat-dialog-content>
+    <mat-form-field class="col">
+      <mat-label>Title</mat-label>
+      <textarea matInput name="title" formControlName="title" rows="2"></textarea>
+    </mat-form-field>
+    <mat-form-field class="col">
+      <mat-label>Description</mat-label>
+      <textarea matInput name="title" formControlName="description" rows="8"></textarea>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button [mat-dialog-close]="null" color="warn">Cancel</button>
+    <button mat-raised-button [mat-dialog-close]="blogForm.value" color="primary">Submit</button>
+  </mat-dialog-actions>
+</form>

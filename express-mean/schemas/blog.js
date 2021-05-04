@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 
-const BlogSchema = mongoose.Schema({
+const BlogSchema = new mongoose.Schema({
     title: String,
     description: String,
     published: Boolean,
+    archived: Boolean,
     userId: String,
-    username: String 
+    username: String
 }, {
     timestamps: true,
     autoIndex: true
