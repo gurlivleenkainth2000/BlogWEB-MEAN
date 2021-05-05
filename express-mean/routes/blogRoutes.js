@@ -9,6 +9,7 @@ const blogRoutes = () => {
     
     // Adding New Blog
     routes.post('/blogs', async (req, res, next) => {
+        console.log(req.body);
         // const { title, description, published, archived, userId, username } = req.body;
         req.body.userId = userId;
         req.body.username = username
@@ -21,10 +22,33 @@ const blogRoutes = () => {
             userId: req.body.userId,
             username: req.body.username
         });
-        blog.save();
-        res.status(200).json({ code: 200, message: 'successfully' })
+        blog.save((error, response) => {
+            if(error) {
+                res.status(500).json({ code: 500, message: 'Something went Wrong!! Please Try Again', detailed: error });
+            }
+
+            if(response) {
+                res.status(200).json({ code: 200, message: 'Blog Added Successfully', detailed: response })
+            }
+        });
+        // if(req.body.title != "" && req.body.description != "") {
+        // } else {
+        // }
         
     });
+
+    // Updating Particular Blog
+    routes.put('/blogs/:blogId', (req, res) => {
+        Blog.findByIdAndUpdate(req.params.blogId, req.body, (error, response) => {
+            if(error) {
+                res.status(500).json({ code: 500, message: 'Something went Wrong!! Please Try Again', detailed: error });
+            }
+
+            if(response) {
+                res.status(200).json({ code: 200, message: 'Blog Updated Successfully', detailed: response })
+            }
+        })
+    })
 
     // Fetching All Blogs
     routes.get('/blogs', async (req, res, next) => {
