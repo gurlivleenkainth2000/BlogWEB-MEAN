@@ -52,7 +52,7 @@ const blogRoutes = () => {
 
     // Fetching All Blogs
     routes.get('/blogs', async (req, res, next) => {
-        const blogList = await Blog.find();
+        const blogList = await Blog.find().sort({ 'createdAt': -1 });
         res.status(200).json(blogList)
     });
 

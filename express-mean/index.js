@@ -1,17 +1,16 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const { dbName } = require('./config');
 const { blogRoutes } = require('./routes/blogRoutes');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 const app = express()
     .use(cors())
-    .use(bodyParser.json())
     .use(express.urlencoded({ extended: true }))
+    .use(express.json())
     .use(blogRoutes());
 
 app.get('/', (req, res) => { res.send(" ") });
