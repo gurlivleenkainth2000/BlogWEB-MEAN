@@ -9,6 +9,15 @@
       <mat-label>Description</mat-label>
       <textarea matInput name="title" formControlName="description" rows="8"></textarea>
     </mat-form-field>
+    <div class="input-group col mb-3">
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="imageUrl" name="imageUrl" (change)="selectFile($event.target.files)">
+        <label class="custom-file-label" for="imageUrl">
+          <span *ngIf="tempFile == null">Choose file</span>
+          <span *ngIf="tempFile != null">{{ tempFile.name }}</span>
+        </label>
+      </div>
+    </div>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-raised-button [mat-dialog-close]="null" color="warn">Cancel</button>

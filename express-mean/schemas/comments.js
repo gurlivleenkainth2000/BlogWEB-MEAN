@@ -4,6 +4,7 @@ const CommentSchema = mongoose.Schema({
     message: String,
     blogId: String,
     userId: String,
+    username: String
 }, {
     timestamps: true,
     autoIndex: true

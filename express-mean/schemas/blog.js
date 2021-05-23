@@ -5,6 +5,7 @@ const BlogSchema = new mongoose.Schema({
     description: String,
     published: Boolean,
     archived: Boolean,
+    imageUrl: String,
     userId: String,
     username: String
 }, {

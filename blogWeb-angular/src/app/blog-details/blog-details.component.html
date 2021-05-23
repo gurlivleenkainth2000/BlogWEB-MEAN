@@ -1,0 +1,59 @@
+<div class="container-fluid p-2 mb-4">
+  <div class="row w-100 m-0">
+    <div class="col">
+      <div class="card">
+        <div class="card-header bg-white border-0">
+          <div class="d-flex justify-content-end">
+            <button mat-flat-button color="primary" class="mr-2" (click)="updateBlog(blogObj)">Update</button>
+            <!-- <button mat-flat-button color="primary" class="mr-2">Comments</button> -->
+            <button mat-flat-button color="warn" (click)="deleteBlog(blogObj._id)">Delete</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row w-100 m-0">
+            <div class="col-12 col-sm-4 p-0 align-middle" *ngIf="blogObj.imageUrl != null">
+              <img [src]="serverUrl + '/' + blogObj.imageUrl" alt="" class="img-fluid rounded">
+            </div>
+            <div class="col-12 col-sm">
+              <div class="d-flex flex-column align-items-start">
+                <h3 class="m-0 font-weight-bold">{{ blogObj.title }}</h3>
+                <p class="text-justify" *ngFor="let para of getPara(blogObj.description)">{{ para }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row w-100 m-0 mt-4">
+    <div class="col">
+      <div class="card">
+        <div class="card-header bg-white border-0">
+          <h2>Comments</h2>
+        </div>
+        <div class="card-body" *ngIf="commentsList.length != 0">
+          <div class="row w-100 m-0 p-2" *ngFor="let comment of commentsList; index as idx">
+            <div class="col-1 p-0 d-flex justify-content-center align-items-center">
+              <i class="material-icons" style="font-size: 38px;">person</i>
+            </div>
+            <div class="col-11 p-0 d-flex flex-column align-items-start justify-content-start">
+              <h3 class="m-0" *ngFor="let message of getPara(comment.message)">{{ message }}</h3>
+              <span class="text-muted">by: {{ comment.username }} | {{ comment.createdAt | date: "dd-MM-yyyy hh:MM:ss aa"}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer border-0 bg-white">
+          <form [formGroup]="commentForm" (ngSubmit)="commented(commentForm)">
+            <div class="row w-100 m-0 d-flex align-items-center">
+              <mat-form-field class="col-12 col-sm-11">
+                <mat-label>Your Comment</mat-label>
+                <textarea matInput name="message" formControlName="message" id="message" rows="1" required></textarea>
+              </mat-form-field>
+              <button type="submit" class="col-12 col-sm" mat-flat-button color="primary">Comment</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,11 +15,12 @@
   <div class="row w-100 m-0 mt-2">
     <div class="col">
       <div class="card-columns">
-        <div class="card shadow mb-2" *ngFor="let blog of blogs">
+        <div class="card shadow mb-2" *ngFor="let blog of blogs" (click)="addComment(blog)">
+          <img *ngIf="blog.imageUrl != null" [src]="completeUrl(blog.imageUrl)" alt="" class="card-img-top rounded">
           <div class="card-body">
             <div class="d-flex flex-column align-items-start">
               <h3 class="m-0 font-weight-bold">{{ blog.title }}</h3>
-              <p>{{ blog.description }}</p>
+              <p class="paraLimit">{{ blog.description }}</p>
             </div>
           </div>
           <div class="card-footer bg-white">
@@ -27,11 +28,6 @@
               <div class="d-flex flex-column align-items-start">
                 <span class="m-0">By: {{ blog.username }}</span>
                 <span class="text-muted" >{{ blog.createdAt | date: 'dd-MM-yyyy hh:mm:ss aa' }}</span>
-              </div>
-              <div class="d-flex justify-content-evenly align-items-center">
-                <button mat-stroked-button color="primary" class="mr-2" (click)="updateBlog(blog)">Update</button>
-                <!-- <button mat-stroked-button color="primary" class="mr-2">Comments</button> -->
-                <button mat-stroked-button color="warn" (click)="deleteBlog(blog._id)">Delete</button>
               </div>
             </div>
           </div>

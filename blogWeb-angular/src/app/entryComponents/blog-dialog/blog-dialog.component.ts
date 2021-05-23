@@ -11,6 +11,9 @@ import { Blog } from 'src/app/classes/blog';
 export class BlogDialogComponent implements OnInit {
 
   blogForm: FormGroup;
+  tempFile: any = null;
+
+
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
     private fb: FormBuilder
@@ -23,6 +26,7 @@ export class BlogDialogComponent implements OnInit {
         description: [""],
         published: [true],
         archived: [false],
+        imageUrl: [null],
         username: [""],
         userId: [""]
       })
@@ -33,10 +37,16 @@ export class BlogDialogComponent implements OnInit {
         description: [blog.description],
         published: [blog.published],
         archived: [blog.archived],
+        imageUrl: [blog.imageUrl],
         username: [blog.username],
         userId: [blog.userId]
       })
     }
+  }
+
+  selectFile(files: FileList) {
+    this.tempFile = files.item(0);
+    this.blogForm.get('imageUrl').setValue(this.tempFile);
   }
 
 }

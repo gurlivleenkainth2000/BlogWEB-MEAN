@@ -4,6 +4,7 @@ export class Blog {
   description: string;
   userId: string;
   username: string;
+  imageUrl: string;
   published: boolean;
   archived: boolean;
   createdAt: Date;

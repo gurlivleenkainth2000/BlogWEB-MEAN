@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { BlogDetailsComponent } from './blog-details/blog-details.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     BlogsComponent,
     BlogDialogComponent,
     NavbarComponent,
+    BlogDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,17 +1,21 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const mongoose = require('mongoose');
 
 const { dbName } = require('./config');
 const { blogRoutes } = require('./routes/blogRoutes');
+const { commentRoutes } = require('./routes/commentRoutes');
 
-const PORT = process.env.PORT || 3001;
+const PORT = 3001;
 
 const app = express()
     .use(cors())
+    .use(express.static(__dirname + '/'))
     .use(express.urlencoded({ extended: true }))
     .use(express.json())
-    .use(blogRoutes());
+    .use(blogRoutes())
+    .use(commentRoutes());
 
 app.get('/', (req, res) => { res.send(" ") });
 
